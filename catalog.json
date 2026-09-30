@@ -5,22 +5,31 @@
   "hf_checked": "2026-09-30",
   "l1_default": "agentica-org/DeepCoder-Preview-Dataset",
   "reference_model": {
-    "id": "NousResearch/NousCoder-14B",
-    "base": "Qwen/Qwen3-14B",
-    "method": "DAPO (GRPO variant)",
-    "livecodebench_v6": {
-      "base": 60.79,
-      "trained_40k": 63.35,
-      "eval_80k_yarn": 67.87
+    "id": "agentica-org/DeepCoder-14B-Preview",
+    "base": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+    "method": "GRPO (GRPO+)",
+    "livecodebench": {
+      "window": "2024-08-01 to 2025-02-01",
+      "n_problems": 279,
+      "n_problems_source": "lcbv5 test split in DeepCoder-Preview-Dataset; same date window as the DeepCoder paper. Problem-by-problem identity with the paper eval set is unverified.",
+      "by_max_new_tokens": {
+        "16k": {"deepcoder": 45.6, "base": 50.2},
+        "32k": {"deepcoder": 57.9, "base": 53.0},
+        "64k": {"deepcoder": 60.6, "base": 53.0}
+      }
     }
+  },
+  "nouscoder_not_used": {
+    "id": "NousResearch/NousCoder-14B",
+    "reason": "Published trained scores at 40K (63.35) and 80K + YaRN (67.87) only; base 60.79 has no stated generation length, so it is not a confirmed same-condition comparison."
   },
   "eval": {
     "primary": {
       "id": "livecodebench/code_generation_lite",
-      "window": "2024-08-01 to 2025-05-01",
-      "release": "v6",
-      "n_problems": 454,
-      "note": "DeepCoder train includes LiveCodeBench problems from 2023-05 to 2024-07, so later windows are the usable test set."
+      "window": "2024-08-01 to 2025-02-01",
+      "release": "v5 window used by DeepCoder",
+      "n_problems": 279,
+      "note": "279 is the lcbv5 test split row count in DeepCoder-Preview-Dataset. DeepCoder train includes LiveCodeBench 2023-05 to 2024-07, so later windows are the usable test set. Problem-by-problem identity with the paper eval items is unverified."
     },
     "sanity": [
       {
@@ -67,7 +76,7 @@
         "DeepCoder-14B-Preview",
         "NousCoder-14B"
       ],
-      "lcb_contamination": "Contains LiveCodeBench 2023-05 to 2024-07. Evaluate only on 2024-08 onward.",
+      "lcb_contamination": "Contains LiveCodeBench 2023-05 to 2024-07. Evaluate on 2024-08-01 to 2025-02-01 (279-row lcbv5 test split).",
       "n_files": 31,
       "size_bytes": 7811998710,
       "size": "7.28 GiB",
@@ -321,10 +330,15 @@
       "gated": false,
       "role": "sft",
       "splits": {
+        "python": 1422489,
+        "cpp": 742323
+      },
+      "n_estimated": 2164812,
+      "viewer_first_5gb": {
         "python": 120000,
         "cpp": 100000
       },
-      "source": "DeepSeek-R1 distillation; load original questions from APPS/TACO as documented on the card",
+      "source": "DeepSeek-R1 distillation; load original questions from APPS/TACO as documented on the card. 120k/100k is the Hub viewer first-5GB slice, not the full set.",
       "n_files": 131,
       "size_bytes": 49411866253,
       "size": "46.02 GiB",

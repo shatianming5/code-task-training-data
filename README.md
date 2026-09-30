@@ -1,28 +1,59 @@
 # Competitive-programming training data catalog
 
-I compiled the public Hugging Face datasets used to post-train competitive-programming models such as [NousCoder-14B](https://huggingface.co/NousResearch/NousCoder-14B) and [X-Coder](https://huggingface.co/IIGroup/X-Coder-RL-Qwen3-8B).
+I compiled the public Hugging Face datasets used to post-train competitive-programming models such as [DeepCoder-14B-Preview](https://huggingface.co/agentica-org/DeepCoder-14B-Preview) and [X-Coder](https://huggingface.co/IIGroup/X-Coder-RL-Qwen3-8B).
 
 This repository is an index. The rows stay on Hugging Face. Click a dataset name for size, file count, and Hub links.
 
 Machine-readable copy: [`catalog.json`](catalog.json). Sizes are the sum of files on Hugging Face `main` (2026-09-30).
 
+## Objective
+
+Fine-tune [`deepseek-ai/DeepSeek-R1-Distill-Qwen-14B`](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B) for competitive programming.
+
+**Final model:** [`agentica-org/DeepCoder-14B-Preview`](https://huggingface.co/agentica-org/DeepCoder-14B-Preview)
+
+One stage: base → RLVR (GRPO / GRPO+) → DeepCoder
+
+| Level | Training model | Training method | Training data | Objective |
+| --- | --- | --- | --- | --- |
+| L1 | [DeepSeek-R1-Distill-Qwen-14B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B) | GRPO (GRPO+) | [DeepCoder-Preview-Dataset](https://huggingface.co/datasets/agentica-org/DeepCoder-Preview-Dataset) | [DeepCoder-14B-Preview](https://huggingface.co/agentica-org/DeepCoder-14B-Preview) |
+| L2 | [DeepSeek-R1-Distill-Qwen-14B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B) | GRPO (GRPO+) | pick or build from the RL table below | [DeepCoder-14B-Preview](https://huggingface.co/agentica-org/DeepCoder-14B-Preview) |
+| L3 | [DeepSeek-R1-Distill-Qwen-14B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B) | GRPO, SFT, or SFT then RL | pick or build from the RL and SFT tables | [DeepCoder-14B-Preview](https://huggingface.co/agentica-org/DeepCoder-14B-Preview) |
+
+A cheaper fallback is the X-Coder 8B path: SFT on [`IIGroup/X-Coder-SFT-376k`](https://huggingface.co/datasets/IIGroup/X-Coder-SFT-376k), then GRPO on [`IIGroup/X-Coder-RL-40k`](https://huggingface.co/datasets/IIGroup/X-Coder-RL-40k).
+
 ## Default L1 mix
 
 | Field | Value |
 | --- | --- |
-| Base | [`Qwen/Qwen3-14B`](https://huggingface.co/Qwen/Qwen3-14B) |
-| Method | GRPO / DAPO |
+| Base | [`deepseek-ai/DeepSeek-R1-Distill-Qwen-14B`](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B) |
+| Method | GRPO (GRPO+) |
 | Data | [`agentica-org/DeepCoder-Preview-Dataset`](https://huggingface.co/datasets/agentica-org/DeepCoder-Preview-Dataset) (24,287 train problems) |
-| Target | [`NousResearch/NousCoder-14B`](https://huggingface.co/NousResearch/NousCoder-14B) |
-| LiveCodeBench v6 | 60.79 → 63.35 at 40K context; 67.87 at 80K + YaRN |
+| Target | [`agentica-org/DeepCoder-14B-Preview`](https://huggingface.co/agentica-org/DeepCoder-14B-Preview) |
+| LiveCodeBench | 2024-08-01 to 2025-02-01, 279 problems |
 
-A cheaper fallback is the X-Coder 8B path: SFT on [`IIGroup/X-Coder-SFT-376k`](https://huggingface.co/datasets/IIGroup/X-Coder-SFT-376k), then GRPO on [`IIGroup/X-Coder-RL-40k`](https://huggingface.co/datasets/IIGroup/X-Coder-RL-40k).
+## Reference recipes
+
+| Work | Role | Base | Data | Method | LiveCodeBench |
+| --- | --- | --- | --- | --- | --- |
+| [DeepCoder-14B-Preview](https://huggingface.co/agentica-org/DeepCoder-14B-Preview) | **target** | DeepSeek-R1-Distill-Qwen-14B | DeepCoder-Preview-Dataset (24k) | GRPO+; train 16K → 32K | v5 window below; match the frozen generation-length column |
+| [NousCoder-14B](https://huggingface.co/NousResearch/NousCoder-14B) | not adopted; see the note at the end | Qwen3-14B | DeepCoder 24k, then drop ~10k already-solved | DAPO (GRPO variant) | v6 40K 63.35; 80K + YaRN 67.87 |
+| [X-Coder RL (Qwen3-8B)](https://huggingface.co/IIGroup/X-Coder-RL-Qwen3-8B) | compute fallback | X-Coder-SFT-Qwen3-8B | X-Coder-RL-40k | GRPO | v5 59.4 → 64.0; v6 55.4 → 56.5 |
+
+DeepCoder vs its base on LiveCodeBench v5 (2024-08-01 to 2025-02-01), from the [model card](https://huggingface.co/agentica-org/DeepCoder-14B-Preview):
+
+| Model | 16K | 32K | 64K |
+| --- | ---: | ---: | ---: |
+| DeepCoder-14B-Preview | 45.6 | 57.9 | 60.6 |
+| DeepSeek-R1-Distill-Qwen-14B | 50.2 | 53.0 | 53.0 |
+
+Zevo freezes `max_new_tokens` in the baseline round. Match the column for that length.
 
 ## LiveCodeBench window
 
-DeepCoder train contains LiveCodeBench problems from **2023-05 to 2024-07**. Use **2024-08-01 to 2025-05-01** (LiveCodeBench v6, 454 problems) as the test window. Do not sample validation from the earlier window.
+DeepCoder train contains LiveCodeBench problems from **2023-05 to 2024-07**. The test window is **2024-08-01 to 2025-02-01**, **279 problems**. That is the row count of the `lcbv5` test split in [DeepCoder-Preview-Dataset](https://huggingface.co/datasets/agentica-org/DeepCoder-Preview-Dataset), and it matches the DeepCoder paper window. I have not checked problem-by-problem that these 279 rows are the paper's eval items.
 
-Any Codeforces-sourced mix (DeepCoder, open-r1/codeforces, rStar-Coder seeds) needs a date-based overlap check against that test window.
+Do not sample validation from 2023-05 to 2024-07. Any Codeforces-sourced mix (DeepCoder, open-r1/codeforces, rStar-Coder seeds) needs a date-based overlap check against this test window.
 
 ## RL data (problems with tests)
 
@@ -47,7 +78,9 @@ LiveCodeBench overlap: DeepCoder / RLVR contain 2023-05 to 2024-07 items (test o
 | [rStar-Coder](datasets/microsoft--rStar-Coder.md) (`synthetic_sft`, `seed_sft`) | [440.29 GiB](https://huggingface.co/datasets/microsoft/rStar-Coder/tree/main) | [867](https://huggingface.co/datasets/microsoft/rStar-Coder/tree/main) | 398,183 · 591,660 | CC BY 4.0 | [card](https://huggingface.co/datasets/microsoft/rStar-Coder) |
 | [X-Coder-SFT-376k](datasets/IIGroup--X-Coder-SFT-376k.md) | [21.48 GiB](https://huggingface.co/datasets/IIGroup/X-Coder-SFT-376k/tree/main) | [123](https://huggingface.co/datasets/IIGroup/X-Coder-SFT-376k/tree/main) | 376,491 | MIT | [card](https://huggingface.co/datasets/IIGroup/X-Coder-SFT-376k) |
 | [OpenCodeReasoning](datasets/nvidia--OpenCodeReasoning.md) | [9.06 GiB](https://huggingface.co/datasets/nvidia/OpenCodeReasoning/tree/main) | [42](https://huggingface.co/datasets/nvidia/OpenCodeReasoning/tree/main) | 567,850 · 167,405 | CC BY 4.0 | [card](https://huggingface.co/datasets/nvidia/OpenCodeReasoning) |
-| [OpenCodeReasoning-2](datasets/nvidia--OpenCodeReasoning-2.md) | [46.02 GiB](https://huggingface.co/datasets/nvidia/OpenCodeReasoning-2/tree/main) | [131](https://huggingface.co/datasets/nvidia/OpenCodeReasoning-2/tree/main) | Python 120,000 · C++ 100,000 | CC BY 4.0 | [card](https://huggingface.co/datasets/nvidia/OpenCodeReasoning-2) |
+| [OpenCodeReasoning-2](datasets/nvidia--OpenCodeReasoning-2.md) | [46.02 GiB](https://huggingface.co/datasets/nvidia/OpenCodeReasoning-2/tree/main) | [131](https://huggingface.co/datasets/nvidia/OpenCodeReasoning-2/tree/main) | ~2.16M (Python ~1.42M · C++ ~742k) | CC BY 4.0 | [card](https://huggingface.co/datasets/nvidia/OpenCodeReasoning-2) |
+
+The OpenCodeReasoning-2 Hugging Face viewer first-5GB slice is Python 120,000 · C++ 100,000. The Hub size API estimates the full set at 2,164,812 rows (Python 1,422,489 · C++ 742,323).
 
 ## Download
 
@@ -61,3 +94,7 @@ python3 scripts/download.py agentica-org/DeepCoder-Preview-Dataset
 ## License
 
 The catalog, README, and download script in this repository are MIT. Each listed dataset keeps the license on its Hugging Face card. This repository does not grant rights to redistribute those rows.
+
+## NousCoder-14B not adopted
+
+NousCoder-14B was not adopted: it only published the trained model's scores at 40K (63.35) and 80K + YaRN (67.87). The base score 60.79 does not state the generation length, so it is not a confirmed same-condition comparison.

@@ -14,6 +14,8 @@ Size on `main` is the sum of current files (what a snapshot download pulls). Hug
 | --- | ---: | ---: | --- |
 | `train/` | 129 | 46.02 GiB | [browse](https://huggingface.co/datasets/nvidia/OpenCodeReasoning-2/tree/main/train) |
 
+Hub size API estimate: **2,164,812** rows (Python 1,422,489 · C++ 742,323). The dataset viewer first-5GB slice is Python 120,000 · C++ 100,000; that is not the full set.
+
 File list: [131 files on Hugging Face](https://huggingface.co/datasets/nvidia/OpenCodeReasoning-2/tree/main).
 
 Back to the [catalog](../README.md).
