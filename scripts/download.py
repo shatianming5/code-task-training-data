@@ -32,7 +32,7 @@ def main() -> None:
             if row["id"] in seen:
                 continue
             seen.add(row["id"])
-            print(f"{row['id']}\t{row.get('license')}\t{row.get('role')}")
+            print(f"{row['id']}\t{row.get('size')}\t{row.get('n_files')}\t{row.get('license')}\t{row.get('hf_url')}")
         return
 
     if not args.dataset_id:

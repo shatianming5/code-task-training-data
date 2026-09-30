@@ -2,9 +2,9 @@
 
 I compiled the public Hugging Face datasets used to post-train competitive-programming models such as [NousCoder-14B](https://huggingface.co/NousResearch/NousCoder-14B) and [X-Coder](https://huggingface.co/IIGroup/X-Coder-RL-Qwen3-8B).
 
-This repository is an index. The rows stay on Hugging Face. rStar-Coder is over 480 GB, X-Coder-RL-40k is 18 GB, and GitHub is the wrong host for those files.
+This repository is an index. The rows stay on Hugging Face. Click a dataset name for size, file count, and Hub links.
 
-Machine-readable copy: [`catalog.json`](catalog.json).
+Machine-readable copy: [`catalog.json`](catalog.json). Sizes are the sum of files on Hugging Face `main` (2026-09-30).
 
 ## Default L1 mix
 
@@ -26,26 +26,28 @@ Any Codeforces-sourced mix (DeepCoder, open-r1/codeforces, rStar-Coder seeds) ne
 
 ## RL data (problems with tests)
 
-| Dataset | License | Scale | Source | LiveCodeBench overlap |
-| --- | --- | --- | --- | --- |
-| [agentica-org/DeepCoder-Preview-Dataset](https://huggingface.co/datasets/agentica-org/DeepCoder-Preview-Dataset) | MIT | 24,287 train (primeintellect 16,252 · taco 7,436 · lcbv5 599) | TACO-Verified, SYNTHETIC-1, LiveCodeBench | Contains 2023-05 to 2024-07; test only after 2024-08 |
-| [NousResearch/RLVR_Coding_Problems](https://huggingface.co/datasets/NousResearch/RLVR_Coding_Problems) | Apache-2.0 | 9.33 GB | Same problems, NousCoder format | Same as DeepCoder |
-| [IIGroup/X-Coder-RL-40k](https://huggingface.co/datasets/IIGroup/X-Coder-RL-40k) | Apache-2.0 | ~40k, 18 GB | Fully synthetic | Low risk; card does not document decontamination |
-| [Skywork/Skywork-OR1-RL-Data](https://huggingface.co/datasets/Skywork/Skywork-OR1-RL-Data) (`code`) | Unspecified | 14,057 | LeetCodeDataset, TACO | Similar LiveCodeBench items removed; no date cutoff |
-| [Kwai-Klear/KlearReasoner-CodeSub-15K](https://huggingface.co/datasets/Kwai-Klear/KlearReasoner-CodeSub-15K) | Apache-2.0 | 15,001 | Cleaned rllm RL subset | Not documented |
-| [microsoft/rStar-Coder](https://huggingface.co/datasets/microsoft/rStar-Coder) (`synthetic_rl`) | CC BY 4.0 | 398,107; all splits >480 GB | Synthetic, CodeChef/Codeforces seeds | Deduplicate Codeforces by date |
-| [open-r1/codeforces](https://huggingface.co/datasets/open-r1/codeforces) (`verifiable`) | ODC-By 4.0 | 8,338 train | Codeforces | Deduplicate by contest date; skip the dataset test split |
-| [likaixin/TACO-verified](https://huggingface.co/datasets/likaixin/TACO-verified) | MIT | 12,898 | TACO | Older problems; residual overlap is low |
-| [inclusionAI/AReaL-boba-2-RL-Code](https://huggingface.co/datasets/inclusionAI/AReaL-boba-2-RL-Code) | Apache-2.0 | 554, 11.2 GB | Unspecified | Not documented |
+| Dataset | Size | Files | Rows | License | Hugging Face |
+| --- | ---: | ---: | ---: | --- | --- |
+| [DeepCoder-Preview-Dataset](datasets/agentica-org--DeepCoder-Preview-Dataset.md) | [7.28 GiB](https://huggingface.co/datasets/agentica-org/DeepCoder-Preview-Dataset/tree/main) | [31](https://huggingface.co/datasets/agentica-org/DeepCoder-Preview-Dataset/tree/main) | 24,287 train | MIT | [card](https://huggingface.co/datasets/agentica-org/DeepCoder-Preview-Dataset) |
+| [RLVR_Coding_Problems](datasets/NousResearch--RLVR_Coding_Problems.md) | [8.69 GiB](https://huggingface.co/datasets/NousResearch/RLVR_Coding_Problems/tree/main) | [4](https://huggingface.co/datasets/NousResearch/RLVR_Coding_Problems/tree/main) | same as DeepCoder | Apache-2.0 | [card](https://huggingface.co/datasets/NousResearch/RLVR_Coding_Problems) |
+| [X-Coder-RL-40k](datasets/IIGroup--X-Coder-RL-40k.md) | [16.76 GiB](https://huggingface.co/datasets/IIGroup/X-Coder-RL-40k/tree/main) | [12](https://huggingface.co/datasets/IIGroup/X-Coder-RL-40k/tree/main) | ~40,000 | Apache-2.0 | [card](https://huggingface.co/datasets/IIGroup/X-Coder-RL-40k) |
+| [Skywork-OR1-RL-Data](datasets/Skywork--Skywork-OR1-RL-Data.md) (`code`) | [784.98 MiB](https://huggingface.co/datasets/Skywork/Skywork-OR1-RL-Data/tree/main) | [6](https://huggingface.co/datasets/Skywork/Skywork-OR1-RL-Data/tree/main) | 14,057 code | Unspecified | [card](https://huggingface.co/datasets/Skywork/Skywork-OR1-RL-Data) |
+| [KlearReasoner-CodeSub-15K](datasets/Kwai-Klear--KlearReasoner-CodeSub-15K.md) | [3.88 GiB](https://huggingface.co/datasets/Kwai-Klear/KlearReasoner-CodeSub-15K/tree/main) | [3](https://huggingface.co/datasets/Kwai-Klear/KlearReasoner-CodeSub-15K/tree/main) | 15,001 | Apache-2.0 | [card](https://huggingface.co/datasets/Kwai-Klear/KlearReasoner-CodeSub-15K) |
+| [rStar-Coder](datasets/microsoft--rStar-Coder.md) (`synthetic_rl`) | [440.29 GiB](https://huggingface.co/datasets/microsoft/rStar-Coder/tree/main) | [867](https://huggingface.co/datasets/microsoft/rStar-Coder/tree/main) | 398,107 RL | CC BY 4.0 | [card](https://huggingface.co/datasets/microsoft/rStar-Coder) |
+| [open-r1/codeforces](datasets/open-r1--codeforces.md) (`verifiable`) | [227.09 GiB](https://huggingface.co/datasets/open-r1/codeforces/tree/main) | [2,219](https://huggingface.co/datasets/open-r1/codeforces/tree/main) | 8,338 verifiable train | ODC-By 4.0 | [card](https://huggingface.co/datasets/open-r1/codeforces) |
+| [TACO-verified](datasets/likaixin--TACO-verified.md) | [1.79 GiB](https://huggingface.co/datasets/likaixin/TACO-verified/tree/main) | [3](https://huggingface.co/datasets/likaixin/TACO-verified/tree/main) | 12,898 | MIT | [card](https://huggingface.co/datasets/likaixin/TACO-verified) |
+| [AReaL-boba-2-RL-Code](datasets/inclusionAI--AReaL-boba-2-RL-Code.md) | [10.46 GiB](https://huggingface.co/datasets/inclusionAI/AReaL-boba-2-RL-Code/tree/main) | [11](https://huggingface.co/datasets/inclusionAI/AReaL-boba-2-RL-Code/tree/main) | 554 | Apache-2.0 | [card](https://huggingface.co/datasets/inclusionAI/AReaL-boba-2-RL-Code) |
+
+LiveCodeBench overlap: DeepCoder / RLVR contain 2023-05 to 2024-07 items (test only after 2024-08). Codeforces-seeded sets (open-r1, rStar) need a date check. X-Coder is synthetic. Skywork removed similar LiveCodeBench items without a date cutoff.
 
 ## SFT data (long traces)
 
-| Dataset | License | Scale | Source |
-| --- | --- | --- | --- |
-| [microsoft/rStar-Coder](https://huggingface.co/datasets/microsoft/rStar-Coder) (`synthetic_sft`, `seed_sft`) | CC BY 4.0 | 398,183 · 591,660 | Synthetic and human contest seeds |
-| [IIGroup/X-Coder-SFT-376k](https://huggingface.co/datasets/IIGroup/X-Coder-SFT-376k) | MIT | 376,491 (verified subset 90,016) | Fully synthetic |
-| [nvidia/OpenCodeReasoning](https://huggingface.co/datasets/nvidia/OpenCodeReasoning) | CC BY 4.0 | split_0 567,850 · split_1 167,405 | DeepSeek-R1 distillation |
-| [nvidia/OpenCodeReasoning-2](https://huggingface.co/datasets/nvidia/OpenCodeReasoning-2) | CC BY 4.0 | Python 120,000 · C++ 100,000 | DeepSeek-R1 distillation |
+| Dataset | Size | Files | Rows | License | Hugging Face |
+| --- | ---: | ---: | ---: | --- | --- |
+| [rStar-Coder](datasets/microsoft--rStar-Coder.md) (`synthetic_sft`, `seed_sft`) | [440.29 GiB](https://huggingface.co/datasets/microsoft/rStar-Coder/tree/main) | [867](https://huggingface.co/datasets/microsoft/rStar-Coder/tree/main) | 398,183 · 591,660 | CC BY 4.0 | [card](https://huggingface.co/datasets/microsoft/rStar-Coder) |
+| [X-Coder-SFT-376k](datasets/IIGroup--X-Coder-SFT-376k.md) | [21.48 GiB](https://huggingface.co/datasets/IIGroup/X-Coder-SFT-376k/tree/main) | [123](https://huggingface.co/datasets/IIGroup/X-Coder-SFT-376k/tree/main) | 376,491 | MIT | [card](https://huggingface.co/datasets/IIGroup/X-Coder-SFT-376k) |
+| [OpenCodeReasoning](datasets/nvidia--OpenCodeReasoning.md) | [9.06 GiB](https://huggingface.co/datasets/nvidia/OpenCodeReasoning/tree/main) | [42](https://huggingface.co/datasets/nvidia/OpenCodeReasoning/tree/main) | 567,850 · 167,405 | CC BY 4.0 | [card](https://huggingface.co/datasets/nvidia/OpenCodeReasoning) |
+| [OpenCodeReasoning-2](datasets/nvidia--OpenCodeReasoning-2.md) | [46.02 GiB](https://huggingface.co/datasets/nvidia/OpenCodeReasoning-2/tree/main) | [131](https://huggingface.co/datasets/nvidia/OpenCodeReasoning-2/tree/main) | Python 120,000 · C++ 100,000 | CC BY 4.0 | [card](https://huggingface.co/datasets/nvidia/OpenCodeReasoning-2) |
 
 ## Download
 
@@ -54,7 +56,7 @@ python3 scripts/download.py --list
 python3 scripts/download.py agentica-org/DeepCoder-Preview-Dataset
 ```
 
-`scripts/download.py` calls `huggingface_hub.snapshot_download` and writes under `data/`, which is gitignored. Install `huggingface_hub` first. Row counts and licenses were checked against Hugging Face dataset cards on 2026-09-30.
+`scripts/download.py` calls `huggingface_hub.snapshot_download` and writes under `data/`, which is gitignored. Install `huggingface_hub` first. File counts and byte sizes were taken from the Hugging Face tree API on 2026-09-30.
 
 ## License
 

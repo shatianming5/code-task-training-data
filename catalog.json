@@ -23,8 +23,14 @@
       "note": "DeepCoder train includes LiveCodeBench problems from 2023-05 to 2024-07, so later windows are the usable test set."
     },
     "sanity": [
-      {"id": "evalplus/humanevalplus", "n": 164},
-      {"id": "evalplus/mbppplus", "n": 378}
+      {
+        "id": "evalplus/humanevalplus",
+        "n": 164
+      },
+      {
+        "id": "evalplus/mbppplus",
+        "n": 378
+      }
     ],
     "validation_candidate": {
       "id": "deepmind/code_contests",
@@ -42,14 +48,34 @@
       "role": "l1_default",
       "n_train": 24287,
       "configs": {
-        "primeintellect": {"train": 16252},
-        "taco": {"train": 7436},
-        "lcbv5": {"train": 599, "test": 279},
-        "codeforces": {"test": 408}
+        "primeintellect": {
+          "train": 16252
+        },
+        "taco": {
+          "train": 7436
+        },
+        "lcbv5": {
+          "train": 599,
+          "test": 279
+        },
+        "codeforces": {
+          "test": 408
+        }
       },
       "source": "TACO-Verified, SYNTHETIC-1, LiveCodeBench",
-      "used_by": ["DeepCoder-14B-Preview", "NousCoder-14B"],
-      "lcb_contamination": "Contains LiveCodeBench 2023-05 to 2024-07. Evaluate only on 2024-08 onward."
+      "used_by": [
+        "DeepCoder-14B-Preview",
+        "NousCoder-14B"
+      ],
+      "lcb_contamination": "Contains LiveCodeBench 2023-05 to 2024-07. Evaluate only on 2024-08 onward.",
+      "n_files": 31,
+      "size_bytes": 7811998710,
+      "size": "7.28 GiB",
+      "hf_storage_bytes": 13603348246,
+      "hf_storage": "12.67 GiB",
+      "hf_files_url": "https://huggingface.co/datasets/agentica-org/DeepCoder-Preview-Dataset/tree/main",
+      "hf_viewer_url": "https://huggingface.co/datasets/agentica-org/DeepCoder-Preview-Dataset/viewer",
+      "page": "datasets/agentica-org--DeepCoder-Preview-Dataset.md"
     },
     {
       "id": "NousResearch/RLVR_Coding_Problems",
@@ -57,10 +83,19 @@
       "license": "apache-2.0",
       "gated": false,
       "role": "rl",
-      "size": "9.33 GB",
+      "size": "8.69 GiB",
       "source": "Reformatted DeepCoder-Preview-Dataset",
-      "used_by": ["NousCoder-14B"],
-      "lcb_contamination": "Same as DeepCoder-Preview-Dataset."
+      "used_by": [
+        "NousCoder-14B"
+      ],
+      "lcb_contamination": "Same as DeepCoder-Preview-Dataset.",
+      "n_files": 4,
+      "size_bytes": 9326591999,
+      "hf_storage_bytes": 18239939267,
+      "hf_storage": "16.99 GiB",
+      "hf_files_url": "https://huggingface.co/datasets/NousResearch/RLVR_Coding_Problems/tree/main",
+      "hf_viewer_url": "https://huggingface.co/datasets/NousResearch/RLVR_Coding_Problems/viewer",
+      "page": "datasets/NousResearch--RLVR_Coding_Problems.md"
     },
     {
       "id": "IIGroup/X-Coder-RL-40k",
@@ -69,10 +104,19 @@
       "gated": false,
       "role": "rl",
       "n_train": 40000,
-      "size": "18 GB",
+      "size": "16.76 GiB",
       "source": "Fully synthetic, 5 difficulty tiers",
-      "used_by": ["X-Coder"],
-      "lcb_contamination": "Synthetic; contamination risk is low. Card does not document decontamination."
+      "used_by": [
+        "X-Coder"
+      ],
+      "lcb_contamination": "Synthetic; contamination risk is low. Card does not document decontamination.",
+      "n_files": 12,
+      "size_bytes": 17999573445,
+      "hf_storage_bytes": 17999568578,
+      "hf_storage": "16.76 GiB",
+      "hf_files_url": "https://huggingface.co/datasets/IIGroup/X-Coder-RL-40k/tree/main",
+      "hf_viewer_url": "https://huggingface.co/datasets/IIGroup/X-Coder-RL-40k/viewer",
+      "page": "datasets/IIGroup--X-Coder-RL-40k.md"
     },
     {
       "id": "Skywork/Skywork-OR1-RL-Data",
@@ -85,8 +129,18 @@
       "n_train": 14057,
       "n_math": 105000,
       "source": "LeetCodeDataset, TACO",
-      "used_by": ["Skywork-OR1"],
-      "lcb_contamination": "Authors removed problems similar to LiveCodeBench. Date cutoff is not stated."
+      "used_by": [
+        "Skywork-OR1"
+      ],
+      "lcb_contamination": "Authors removed problems similar to LiveCodeBench. Date cutoff is not stated.",
+      "n_files": 6,
+      "size_bytes": 823113220,
+      "size": "784.98 MiB",
+      "hf_storage_bytes": 6252922168,
+      "hf_storage": "5.82 GiB",
+      "hf_files_url": "https://huggingface.co/datasets/Skywork/Skywork-OR1-RL-Data/tree/main",
+      "hf_viewer_url": "https://huggingface.co/datasets/Skywork/Skywork-OR1-RL-Data/viewer",
+      "page": "datasets/Skywork--Skywork-OR1-RL-Data.md"
     },
     {
       "id": "Kwai-Klear/KlearReasoner-CodeSub-15K",
@@ -96,8 +150,18 @@
       "role": "rl",
       "n_train": 15001,
       "source": "Cleaned subset of rllm RL code data",
-      "used_by": ["Klear-Reasoner"],
-      "lcb_contamination": "Not documented; check before mixing with a LiveCodeBench test window."
+      "used_by": [
+        "Klear-Reasoner"
+      ],
+      "lcb_contamination": "Not documented; check before mixing with a LiveCodeBench test window.",
+      "n_files": 3,
+      "size_bytes": 4165429235,
+      "size": "3.88 GiB",
+      "hf_storage_bytes": 6586796426,
+      "hf_storage": "6.13 GiB",
+      "hf_files_url": "https://huggingface.co/datasets/Kwai-Klear/KlearReasoner-CodeSub-15K/tree/main",
+      "hf_viewer_url": "https://huggingface.co/datasets/Kwai-Klear/KlearReasoner-CodeSub-15K/viewer",
+      "page": "datasets/Kwai-Klear--KlearReasoner-CodeSub-15K.md"
     },
     {
       "id": "microsoft/rStar-Coder",
@@ -109,8 +173,18 @@
       "n_train": 398107,
       "size_all_splits": ">480 GB",
       "source": "Synthetic problems seeded from CodeChef and Codeforces",
-      "used_by": ["rStar-Coder"],
-      "lcb_contamination": "Seeds include Codeforces. Deduplicate by date against LiveCodeBench Codeforces items. Test cases live in synthetic_rl_testcase."
+      "used_by": [
+        "rStar-Coder"
+      ],
+      "lcb_contamination": "Seeds include Codeforces. Deduplicate by date against LiveCodeBench Codeforces items. Test cases live in synthetic_rl_testcase.",
+      "n_files": 867,
+      "size_bytes": 472757580959,
+      "size": "440.29 GiB",
+      "hf_storage_bytes": 506050071749,
+      "hf_storage": "471.30 GiB",
+      "hf_files_url": "https://huggingface.co/datasets/microsoft/rStar-Coder/tree/main",
+      "hf_viewer_url": "https://huggingface.co/datasets/microsoft/rStar-Coder/viewer",
+      "page": "datasets/microsoft--rStar-Coder.md"
     },
     {
       "id": "open-r1/codeforces",
@@ -123,7 +197,15 @@
       "n_train": 8338,
       "source": "Codeforces",
       "used_by": [],
-      "lcb_contamination": "Overlaps LiveCodeBench Codeforces problems. Deduplicate by contest date. Do not train on the dataset test split (late 2024 / early 2025)."
+      "lcb_contamination": "Overlaps LiveCodeBench Codeforces problems. Deduplicate by contest date. Do not train on the dataset test split (late 2024 / early 2025).",
+      "n_files": 2219,
+      "size_bytes": 243838668917,
+      "size": "227.09 GiB",
+      "hf_storage_bytes": 385043763607,
+      "hf_storage": "358.60 GiB",
+      "hf_files_url": "https://huggingface.co/datasets/open-r1/codeforces/tree/main",
+      "hf_viewer_url": "https://huggingface.co/datasets/open-r1/codeforces/viewer",
+      "page": "datasets/open-r1--codeforces.md"
     },
     {
       "id": "likaixin/TACO-verified",
@@ -133,8 +215,18 @@
       "role": "rl",
       "n_train": 12898,
       "source": "TACO",
-      "used_by": ["DeepCoder-14B-Preview"],
-      "lcb_contamination": "Older contest problems. Residual overlap risk is low relative to LiveCodeBench 2024-08+."
+      "used_by": [
+        "DeepCoder-14B-Preview"
+      ],
+      "lcb_contamination": "Older contest problems. Residual overlap risk is low relative to LiveCodeBench 2024-08+.",
+      "n_files": 3,
+      "size_bytes": 1925888192,
+      "size": "1.79 GiB",
+      "hf_storage_bytes": 2841521015,
+      "hf_storage": "2.65 GiB",
+      "hf_files_url": "https://huggingface.co/datasets/likaixin/TACO-verified/tree/main",
+      "hf_viewer_url": "https://huggingface.co/datasets/likaixin/TACO-verified/viewer",
+      "page": "datasets/likaixin--TACO-verified.md"
     },
     {
       "id": "inclusionAI/AReaL-boba-2-RL-Code",
@@ -143,10 +235,19 @@
       "gated": false,
       "role": "rl",
       "n_train": 554,
-      "size": "11.2 GB",
+      "size": "10.46 GiB",
       "source": "Unspecified",
-      "used_by": ["AReaL-boba-2"],
-      "lcb_contamination": "Not documented."
+      "used_by": [
+        "AReaL-boba-2"
+      ],
+      "lcb_contamination": "Not documented.",
+      "n_files": 11,
+      "size_bytes": 11229060962,
+      "hf_storage_bytes": 28207079485,
+      "hf_storage": "26.27 GiB",
+      "hf_files_url": "https://huggingface.co/datasets/inclusionAI/AReaL-boba-2-RL-Code/tree/main",
+      "hf_viewer_url": "https://huggingface.co/datasets/inclusionAI/AReaL-boba-2-RL-Code/viewer",
+      "page": "datasets/inclusionAI--AReaL-boba-2-RL-Code.md"
     }
   ],
   "sft": [
@@ -162,7 +263,15 @@
       },
       "size_all_splits": ">480 GB",
       "source": "Synthetic problems and human contest seeds",
-      "reported": "Qwen2.5-7B LiveCodeBench 17.4 to 57.3; 14B 23.3 to 62.5"
+      "reported": "Qwen2.5-7B LiveCodeBench 17.4 to 57.3; 14B 23.3 to 62.5",
+      "n_files": 867,
+      "size_bytes": 472757580959,
+      "size": "440.29 GiB",
+      "hf_storage_bytes": 506050071749,
+      "hf_storage": "471.30 GiB",
+      "hf_files_url": "https://huggingface.co/datasets/microsoft/rStar-Coder/tree/main",
+      "hf_viewer_url": "https://huggingface.co/datasets/microsoft/rStar-Coder/viewer",
+      "page": "datasets/microsoft--rStar-Coder.md"
     },
     {
       "id": "IIGroup/X-Coder-SFT-376k",
@@ -173,7 +282,17 @@
       "n_train": 376491,
       "n_verified": 90016,
       "source": "Fully synthetic",
-      "used_by": ["X-Coder"]
+      "used_by": [
+        "X-Coder"
+      ],
+      "n_files": 123,
+      "size_bytes": 23066963099,
+      "size": "21.48 GiB",
+      "hf_storage_bytes": 23066955346,
+      "hf_storage": "21.48 GiB",
+      "hf_files_url": "https://huggingface.co/datasets/IIGroup/X-Coder-SFT-376k/tree/main",
+      "hf_viewer_url": "https://huggingface.co/datasets/IIGroup/X-Coder-SFT-376k/viewer",
+      "page": "datasets/IIGroup--X-Coder-SFT-376k.md"
     },
     {
       "id": "nvidia/OpenCodeReasoning",
@@ -185,7 +304,15 @@
         "split_0": 567850,
         "split_1": 167405
       },
-      "source": "DeepSeek-R1 distillation over APPS, TACO, and related contests"
+      "source": "DeepSeek-R1 distillation over APPS, TACO, and related contests",
+      "n_files": 42,
+      "size_bytes": 9731582805,
+      "size": "9.06 GiB",
+      "hf_storage_bytes": 13325719641,
+      "hf_storage": "12.41 GiB",
+      "hf_files_url": "https://huggingface.co/datasets/nvidia/OpenCodeReasoning/tree/main",
+      "hf_viewer_url": "https://huggingface.co/datasets/nvidia/OpenCodeReasoning/viewer",
+      "page": "datasets/nvidia--OpenCodeReasoning.md"
     },
     {
       "id": "nvidia/OpenCodeReasoning-2",
@@ -197,7 +324,16 @@
         "python": 120000,
         "cpp": 100000
       },
-      "source": "DeepSeek-R1 distillation; load original questions from APPS/TACO as documented on the card"
+      "source": "DeepSeek-R1 distillation; load original questions from APPS/TACO as documented on the card",
+      "n_files": 131,
+      "size_bytes": 49411866253,
+      "size": "46.02 GiB",
+      "hf_storage_bytes": 156753115175,
+      "hf_storage": "145.99 GiB",
+      "hf_files_url": "https://huggingface.co/datasets/nvidia/OpenCodeReasoning-2/tree/main",
+      "hf_viewer_url": "https://huggingface.co/datasets/nvidia/OpenCodeReasoning-2/viewer",
+      "page": "datasets/nvidia--OpenCodeReasoning-2.md"
     }
-  ]
+  ],
+  "size_note": "size is the sum of files on Hugging Face main; hf_storage is Hub usedStorage and may include LFS history"
 }
