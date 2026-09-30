@@ -1,0 +1,203 @@
+{
+  "name": "code-task-training-data",
+  "description": "Candidate RL and SFT datasets for competitive-programming LLM post-training. This repository catalogs Hugging Face sources; it does not rehost the rows.",
+  "compiled": "2026-09-29",
+  "hf_checked": "2026-09-30",
+  "l1_default": "agentica-org/DeepCoder-Preview-Dataset",
+  "reference_model": {
+    "id": "NousResearch/NousCoder-14B",
+    "base": "Qwen/Qwen3-14B",
+    "method": "DAPO (GRPO variant)",
+    "livecodebench_v6": {
+      "base": 60.79,
+      "trained_40k": 63.35,
+      "eval_80k_yarn": 67.87
+    }
+  },
+  "eval": {
+    "primary": {
+      "id": "livecodebench/code_generation_lite",
+      "window": "2024-08-01 to 2025-05-01",
+      "release": "v6",
+      "n_problems": 454,
+      "note": "DeepCoder train includes LiveCodeBench problems from 2023-05 to 2024-07, so later windows are the usable test set."
+    },
+    "sanity": [
+      {"id": "evalplus/humanevalplus", "n": 164},
+      {"id": "evalplus/mbppplus", "n": 378}
+    ],
+    "validation_candidate": {
+      "id": "deepmind/code_contests",
+      "test": 165,
+      "valid": 117,
+      "note": "Deduplicate against TACO / DeepCoder taco before using as validation."
+    }
+  },
+  "rl": [
+    {
+      "id": "agentica-org/DeepCoder-Preview-Dataset",
+      "hf_url": "https://huggingface.co/datasets/agentica-org/DeepCoder-Preview-Dataset",
+      "license": "mit",
+      "gated": false,
+      "role": "l1_default",
+      "n_train": 24287,
+      "configs": {
+        "primeintellect": {"train": 16252},
+        "taco": {"train": 7436},
+        "lcbv5": {"train": 599, "test": 279},
+        "codeforces": {"test": 408}
+      },
+      "source": "TACO-Verified, SYNTHETIC-1, LiveCodeBench",
+      "used_by": ["DeepCoder-14B-Preview", "NousCoder-14B"],
+      "lcb_contamination": "Contains LiveCodeBench 2023-05 to 2024-07. Evaluate only on 2024-08 onward."
+    },
+    {
+      "id": "NousResearch/RLVR_Coding_Problems",
+      "hf_url": "https://huggingface.co/datasets/NousResearch/RLVR_Coding_Problems",
+      "license": "apache-2.0",
+      "gated": false,
+      "role": "rl",
+      "size": "9.33 GB",
+      "source": "Reformatted DeepCoder-Preview-Dataset",
+      "used_by": ["NousCoder-14B"],
+      "lcb_contamination": "Same as DeepCoder-Preview-Dataset."
+    },
+    {
+      "id": "IIGroup/X-Coder-RL-40k",
+      "hf_url": "https://huggingface.co/datasets/IIGroup/X-Coder-RL-40k",
+      "license": "apache-2.0",
+      "gated": false,
+      "role": "rl",
+      "n_train": 40000,
+      "size": "18 GB",
+      "source": "Fully synthetic, 5 difficulty tiers",
+      "used_by": ["X-Coder"],
+      "lcb_contamination": "Synthetic; contamination risk is low. Card does not document decontamination."
+    },
+    {
+      "id": "Skywork/Skywork-OR1-RL-Data",
+      "hf_url": "https://huggingface.co/datasets/Skywork/Skywork-OR1-RL-Data",
+      "license": null,
+      "license_note": "Hugging Face card does not declare a license.",
+      "gated": false,
+      "role": "rl",
+      "subset": "code",
+      "n_train": 14057,
+      "n_math": 105000,
+      "source": "LeetCodeDataset, TACO",
+      "used_by": ["Skywork-OR1"],
+      "lcb_contamination": "Authors removed problems similar to LiveCodeBench. Date cutoff is not stated."
+    },
+    {
+      "id": "Kwai-Klear/KlearReasoner-CodeSub-15K",
+      "hf_url": "https://huggingface.co/datasets/Kwai-Klear/KlearReasoner-CodeSub-15K",
+      "license": "apache-2.0",
+      "gated": false,
+      "role": "rl",
+      "n_train": 15001,
+      "source": "Cleaned subset of rllm RL code data",
+      "used_by": ["Klear-Reasoner"],
+      "lcb_contamination": "Not documented; check before mixing with a LiveCodeBench test window."
+    },
+    {
+      "id": "microsoft/rStar-Coder",
+      "hf_url": "https://huggingface.co/datasets/microsoft/rStar-Coder",
+      "license": "cc-by-4.0",
+      "gated": false,
+      "role": "rl",
+      "subset": "synthetic_rl",
+      "n_train": 398107,
+      "size_all_splits": ">480 GB",
+      "source": "Synthetic problems seeded from CodeChef and Codeforces",
+      "used_by": ["rStar-Coder"],
+      "lcb_contamination": "Seeds include Codeforces. Deduplicate by date against LiveCodeBench Codeforces items. Test cases live in synthetic_rl_testcase."
+    },
+    {
+      "id": "open-r1/codeforces",
+      "hf_url": "https://huggingface.co/datasets/open-r1/codeforces",
+      "license": "odc-by-4.0",
+      "license_note": "Dataset card states ODC-By 4.0; Hugging Face license tag is cc-by-4.0.",
+      "gated": false,
+      "role": "rl",
+      "subset": "verifiable",
+      "n_train": 8338,
+      "source": "Codeforces",
+      "used_by": [],
+      "lcb_contamination": "Overlaps LiveCodeBench Codeforces problems. Deduplicate by contest date. Do not train on the dataset test split (late 2024 / early 2025)."
+    },
+    {
+      "id": "likaixin/TACO-verified",
+      "hf_url": "https://huggingface.co/datasets/likaixin/TACO-verified",
+      "license": "mit",
+      "gated": false,
+      "role": "rl",
+      "n_train": 12898,
+      "source": "TACO",
+      "used_by": ["DeepCoder-14B-Preview"],
+      "lcb_contamination": "Older contest problems. Residual overlap risk is low relative to LiveCodeBench 2024-08+."
+    },
+    {
+      "id": "inclusionAI/AReaL-boba-2-RL-Code",
+      "hf_url": "https://huggingface.co/datasets/inclusionAI/AReaL-boba-2-RL-Code",
+      "license": "apache-2.0",
+      "gated": false,
+      "role": "rl",
+      "n_train": 554,
+      "size": "11.2 GB",
+      "source": "Unspecified",
+      "used_by": ["AReaL-boba-2"],
+      "lcb_contamination": "Not documented."
+    }
+  ],
+  "sft": [
+    {
+      "id": "microsoft/rStar-Coder",
+      "hf_url": "https://huggingface.co/datasets/microsoft/rStar-Coder",
+      "license": "cc-by-4.0",
+      "gated": false,
+      "role": "sft",
+      "subsets": {
+        "synthetic_sft": 398183,
+        "seed_sft": 591660
+      },
+      "size_all_splits": ">480 GB",
+      "source": "Synthetic problems and human contest seeds",
+      "reported": "Qwen2.5-7B LiveCodeBench 17.4 to 57.3; 14B 23.3 to 62.5"
+    },
+    {
+      "id": "IIGroup/X-Coder-SFT-376k",
+      "hf_url": "https://huggingface.co/datasets/IIGroup/X-Coder-SFT-376k",
+      "license": "mit",
+      "gated": false,
+      "role": "sft",
+      "n_train": 376491,
+      "n_verified": 90016,
+      "source": "Fully synthetic",
+      "used_by": ["X-Coder"]
+    },
+    {
+      "id": "nvidia/OpenCodeReasoning",
+      "hf_url": "https://huggingface.co/datasets/nvidia/OpenCodeReasoning",
+      "license": "cc-by-4.0",
+      "gated": false,
+      "role": "sft",
+      "configs": {
+        "split_0": 567850,
+        "split_1": 167405
+      },
+      "source": "DeepSeek-R1 distillation over APPS, TACO, and related contests"
+    },
+    {
+      "id": "nvidia/OpenCodeReasoning-2",
+      "hf_url": "https://huggingface.co/datasets/nvidia/OpenCodeReasoning-2",
+      "license": "cc-by-4.0",
+      "gated": false,
+      "role": "sft",
+      "splits": {
+        "python": 120000,
+        "cpp": 100000
+      },
+      "source": "DeepSeek-R1 distillation; load original questions from APPS/TACO as documented on the card"
+    }
+  ]
+}
